@@ -1,0 +1,5 @@
+__main__ - INFO - !!(duration): InstanceID, duration, Launched_Time, Terminating_Time: i-00ecabc392ee770ed, 273898.0, 1588133286.0, 1588133559.898
+__main__ - INFO - !!(duration): InstanceID, duration, Launched_Time, Terminating_Time: i-0e1550d1b1fe6ef34, 548797.0, 1588133011.0, 1588133559.797
+__main__ - INFO - !!(duration): InstanceID, duration, Launched_Time, Terminating_Time: i-08d37f5bc4ef8986f, 548695.0, 1588133011.0, 1588133559.695
+__main__ - INFO - !!(duration): InstanceID, duration, Launched_Time, Terminating_Time: i-02b2c98149edada2d, 548571.0, 1588133011.0, 1588133559.571
+__main__ - INFO - !!(duration): InstanceID, duration, Launched_Time, Terminating_Time: i-014c70eeb1433da3c, 395547.0, 1588133011.0, 1588133406.547
