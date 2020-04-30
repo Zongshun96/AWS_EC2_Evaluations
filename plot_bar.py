@@ -9,7 +9,7 @@ def plot_price(data, labels, colors, out_file):
 	for i in range(0, len(data)): 
 		rects1 = plt.bar(i+(bar_width/20), data[i], bar_width,
 		alpha=opacity, label=labels[i], color=colors[i])
-	plt.ylabel('Cost ($)')
+	plt.ylabel('normalized cost')
 	plt.xticks(index+0.2, labels)
 	plt.ticklabel_format(axis='y', scilimits=(0,0))
 	plt.tight_layout()
