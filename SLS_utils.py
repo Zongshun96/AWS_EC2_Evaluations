@@ -16,22 +16,46 @@ def price(SLS_req_logdata):
 def Num_Req_to_SLS(SLS_req_logdata, ax):
     lists = sorted(SLS_req_logdata.d_SLS_num_of_req.items())
     x, y = zip(*lists)
-    # fig = plt.figure()
-    ax.set_title('number of requests (SLS)')
+    ax.set_title('Total Requests',fontdict={'fontsize': 8, 'fontweight': 'medium'})
     ax.set_xlabel('epoch')
-    ax.set_ylabel('number of requests')
-    ax.scatter(x, y, s=2)
-    # plt.legend(SLS_req_logdata.d_SLS_num_of_req.keys())
-    # plt.savefig('plot1.pdf', dpi=600, bbox_inches='tight')
-    # return fig
+    ax.set_ylabel('# of requests')
+    ax.plot(x, y)
+    # ax.scatter(x, y)
+    SLS_Req_Fail(SLS_req_logdata, ax)
+    VM_Req_Fail(SLS_req_logdata, ax)
 
 def SLS_Req_TurnAround_time(SLS_req_logdata, ax):
     # fig = plt.figure()
-    ax.set_title('SLS req turn around time')
+    ax.set_title('Performance',fontdict={'fontsize': 8, 'fontweight': 'medium'})
     ax.set_xlabel('request')
-    ax.set_ylabel('turn around time')
-    ax.scatter(list(range(0, len(SLS_req_logdata.d_SLS_TAtime))), SLS_req_logdata.d_SLS_TAtime, s=2)
+    ax.set_ylabel('turn-around time (s)')
+    # ax.scatter(list(range(0, len(SLS_req_logdata.d_SLS_TAtime))), SLS_req_logdata.d_SLS_TAtime, s=2)
+    ax.scatter(list(SLS_req_logdata.d_SLS_AVG_TAtime_d.keys()), list(SLS_req_logdata.d_SLS_AVG_TAtime_d.values()), s=2)
     # return fig
+
+def SLS_Req_Fail(SLS_req_logdata, ax):
+    lists = sorted(SLS_req_logdata.d_SLS_num_of_fail.items())
+    if lists:
+        x, y = zip(*lists)
+        ax.set_title('VM req failure', fontdict={'fontsize': 8, 'fontweight': 'medium'})
+        ax.set_xlabel('epoch (s)', fontdict={'fontsize': 4, 'fontweight': 'medium'})
+        ax.set_ylabel('failure count', fontdict={'fontsize': 4, 'fontweight': 'medium'})
+        ax.plot(x, y)
+        # ax.scatter(x, y)
+        # ax.scatter(list(range(0, len(hybrid_req_logdata.d_SLS_TAtime))), hybrid_req_logdata.d_SLS_TAtime, s=2)
+        # ax.scatter(list(SLS_req_logdata.d_SLS_num_of_fail.keys()), list(SLS_req_logdata.d_SLS_num_of_fail.values()), s=2)
+
+def VM_Req_Fail(SLS_req_logdata, ax):
+    lists = sorted(SLS_req_logdata.d_VM_num_of_fail.items())
+    if lists:
+        x, y = zip(*lists)
+        ax.set_title('VM req failure', fontdict={'fontsize': 8, 'fontweight': 'medium'})
+        ax.set_xlabel('epoch (s)', fontdict={'fontsize': 4, 'fontweight': 'medium'})
+        ax.set_ylabel('failure count', fontdict={'fontsize': 4, 'fontweight': 'medium'})
+        ax.plot(x, y)
+        # ax.scatter(x, y)
+        # ax.scatter(list(range(0, len(hybrid_req_logdata.d_SLS_TAtime))), hybrid_req_logdata.d_SLS_TAtime, s=2)
+        # ax.scatter(list(SLS_req_logdata.d_SLS_num_of_fail.keys()), list(SLS_req_logdata.d_SLS_num_of_fail.values()), s=2)
 
 def plot_progress(SLS_req_logdata, ax):
     f1 = Num_Req_to_SLS(SLS_req_logdata, ax[0])

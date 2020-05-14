@@ -15,7 +15,7 @@ def plot_price(data, labels, colors, out_file):
 	plt.tight_layout()
 	plt.plot()
 	# fig.savefig(out_file, dpi=600, bbox_inches='tight')
-	plt.show()
+	#plt.show()
 	return fig
 
 
