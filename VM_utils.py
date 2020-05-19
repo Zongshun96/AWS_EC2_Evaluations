@@ -153,9 +153,11 @@ def Num_Req_to_VM(MAXVM_req_logdata, ax):
     ax.set_xlabel('epoch')
     ax.set_xlabel('# of requests')
     ax.plot(x, y)
+    ax.set_xticks(range(0, max(x) + 1, 100))
     # ax.scatter(x, y, c="b", s=4)
     VM_Req_Fail(MAXVM_req_logdata, ax)
-    SLS_Req_Fail(MAXVM_req_logdata, ax)
+    # SLS_Req_Fail(MAXVM_req_logdata, ax)
+    ax.legend(("total", "VM fail"), loc='best')
     # plt.legend(MAXVM_req_logdata.d_VM_num_of_req.keys())
     # plt.savefig('plot0.pdf', dpi=600, bbox_inches='tight')
     # return fig
@@ -165,6 +167,7 @@ def VM_Req_TurnAround_time(MAXVM_req_logdata, ax):
     ax.set_title('Performance', fontdict={'fontsize': 8, 'fontweight': 'medium'})
     # ax.scatter(list(range(0, len(MAXVM_req_logdata.d_VM_TAtime))), MAXVM_req_logdata.d_VM_TAtime, s=2)
     ax.scatter(list(MAXVM_req_logdata.d_VM_AVG_TAtime_d.keys()), list(MAXVM_req_logdata.d_VM_AVG_TAtime_d.values()), s=2)
+    ax.set_xticks(range(0, max(list(MAXVM_req_logdata.d_VM_AVG_TAtime_d.keys())) + 1, 100))
     ax.set_xlabel('request')
     ax.set_ylabel('turn-around time (s)')
     # return fig
@@ -178,6 +181,9 @@ def VM_duration(MAXVM_vm_logdata, ax):
     ax.set_title('VM duration')
     ax.set_xlabel('time')
     ax.set_ylabel('VM index')
+    # ax.axis(xmin=0, xmax=max(list(MAXVM_vm_logdata.d_VM_num_of_req.keys())))
+    # ax.set_xticks(range(0, max(
+    #     list(MAXVM_vm_logdata.d_VM_num_of_req.keys()) + list(MAXVM_vm_logdata.d_SLS_num_of_req.keys())) + 1, 100))
     for i in range(len(MAXVM_vm_logdata.d_VM_duration)):
         ax.plot((MAXVM_vm_logdata.d_VM_Launched_Time[i],
                  MAXVM_vm_logdata.d_VM_Terminated_Time[i]), (i, i))
@@ -196,7 +202,9 @@ def VM_healthy(MAXVM_req_logdata, ax):
         if MAXVM_req_logdata.d_total_count[i] != 0:
             min_healthy_index = i
             break
-    ax.plot(list(range(0, len(MAXVM_req_logdata.d_healthy_count[i-1:]))), MAXVM_req_logdata.d_healthy_count[i-1:])
+    ax.plot(list(range(0, len(MAXVM_req_logdata.d_total_count[i-1:]))), MAXVM_req_logdata.d_total_count[i-1:])
+    ax.set_xticks(range(0, len(MAXVM_req_logdata.d_total_count[i-1:]) + 1, 100))
+    ax.axis(xmin=0, xmax=len(MAXVM_req_logdata.d_total_count[i-1:]))
 
 
 
@@ -204,11 +212,12 @@ def VM_Req_Fail(MAXVM_req_logdata, ax):
     lists = sorted(MAXVM_req_logdata.d_VM_num_of_fail.items())
     if lists:
         x, y = zip(*lists)
-        ax.set_title('VM req failure', fontdict={'fontsize': 8, 'fontweight': 'medium'})
-        ax.set_xlabel('epoch (s)', fontdict={'fontsize': 4, 'fontweight': 'medium'})
-        ax.set_ylabel('failure count', fontdict={'fontsize': 4, 'fontweight': 'medium'})
-        # ax.scatter(list(range(0, len(hybrid_req_logdata.d_SLS_TAtime))), hybrid_req_logdata.d_SLS_TAtime, s=2)
-        ax.plot(x, y)
+        # ax.set_title('VM req failure', fontdict={'fontsize': 8, 'fontweight': 'medium'})
+        # ax.set_xlabel('epoch (s)', fontdict={'fontsize': 4, 'fontweight': 'medium'})
+        # ax.set_ylabel('failure count', fontdict={'fontsize': 4, 'fontweight': 'medium'})
+        ax.scatter(x, y, s=2, c="black", zorder=10)
+        # ax.plot(x, y)
+        ax.set_xticks(range(0, max(x) + 1, 100))
         # ax.scatter(x, y, c="y", s=1)
         # ax.scatter(list(MAXVM_req_logdata.d_VM_num_of_fail.keys()), list(MAXVM_req_logdata.d_VM_num_of_fail.values()), s=2)
 
@@ -216,11 +225,12 @@ def SLS_Req_Fail(MAXVM_req_logdata, ax):
     lists = sorted(MAXVM_req_logdata.d_SLS_num_of_fail.items())
     if lists:
         x, y = zip(*lists)
-        ax.set_title('VM req failure', fontdict={'fontsize': 8, 'fontweight': 'medium'})
-        ax.set_xlabel('epoch (s)', fontdict={'fontsize': 4, 'fontweight': 'medium'})
-        ax.set_ylabel('failure count', fontdict={'fontsize': 4, 'fontweight': 'medium'})
-        # ax.scatter(list(range(0, len(hybrid_req_logdata.d_SLS_TAtime))), hybrid_req_logdata.d_SLS_TAtime, s=2)
-        ax.plot(x, y)
+        # ax.set_title('VM req failure', fontdict={'fontsize': 8, 'fontweight': 'medium'})
+        # ax.set_xlabel('epoch (s)', fontdict={'fontsize': 4, 'fontweight': 'medium'})
+        # ax.set_ylabel('failure count', fontdict={'fontsize': 4, 'fontweight': 'medium'})
+        ax.scatter(x, y, s=2, c="black", zorder=10)
+        # ax.plot(x, y)
+        ax.set_xticks(range(0, max(x) + 1, 100))
         # ax.scatter(x, y, c="y", s=1)
         # ax.scatter(list(MAXVM_req_logdata.d_VM_num_of_fail.keys()), list(MAXVM_req_logdata.d_VM_num_of_fail.values()), s=2)
 
@@ -234,5 +244,5 @@ def plot_progress(MAXVM_req_logdata, MAXVM_vm_logdata, ax):
 
 
 if __name__ == "__main__":
-    setup_logging("25_testing")
-    PollDurationDict("25_testing")
+    setup_logging("41_20200518_VM_simple_2_240_40_-40_req_per_vm_3_to_1_to_9_pos_std_wait_for_server_new_alarm_1_pts_in_1_1_min_pts_scaling_per_300_sec_1800_total")
+    PollDurationDict("41_20200518_VM_simple_2_240_40_-40_req_per_vm_3_to_1_to_9_pos_std_wait_for_server_new_alarm_1_pts_in_1_1_min_pts_scaling_per_300_sec_1800_total")

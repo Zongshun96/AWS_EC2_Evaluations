@@ -129,7 +129,7 @@ def readLog(logfile):
                 ret.d_unused_count.append(float(data[4]))
                 ret.d_draining_count.append(float(data[5]))
                 ret.d_unavailable_count.append(float(data[6]))
-                ret.d_total_count.append(float(data[6]))
+                ret.d_total_count.append(float(data[7]))
 
 
         for k, v in ret.d_VM_TAtime_d.items():
