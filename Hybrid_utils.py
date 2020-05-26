@@ -13,7 +13,7 @@ def Num_Req_to_VM(hybrid_req_logdata, ax):
     ax.set_xlabel('epoch', fontdict={'fontsize': 4, 'fontweight': 'medium'})
     ax.set_ylabel('# of requests', fontdict={'fontsize': 4, 'fontweight': 'medium'})
     # ax.plot(x, y, color='g')
-    ax.scatter(x, y, color='r', s=1)
+    ax.scatter(x, y, color='r', s=1, zorder=9)
     ax.set_xticks(range(0, max(list(hybrid_req_logdata.d_VM_num_of_req.keys())+list(hybrid_req_logdata.d_SLS_num_of_req.keys())) + 1, 100))
     ax.axis(xmin=0, xmax=max(list(hybrid_req_logdata.d_VM_num_of_req.keys())+list(hybrid_req_logdata.d_SLS_num_of_req.keys())))
     VM_Req_Fail(hybrid_req_logdata, ax)
@@ -26,7 +26,7 @@ def Num_Req_to_SLS(hybrid_req_logdata, ax):
     ax.set_xlabel('epoch', fontdict={'fontsize': 4, 'fontweight': 'medium'})
     ax.set_ylabel('# of requests', fontdict={'fontsize': 4, 'fontweight': 'medium'})
     # ax.plot(x, y, color='r')
-    ax.scatter(x, y, color='g', s=1)
+    ax.scatter(x, y, color='g', s=1, zorder=9)
     ax.set_xticks(range(0, max(list(hybrid_req_logdata.d_VM_num_of_req.keys())+list(hybrid_req_logdata.d_SLS_num_of_req.keys())) + 1, 100))
     ax.axis(xmin=0, xmax=max(
         list(hybrid_req_logdata.d_VM_num_of_req.keys()) + list(hybrid_req_logdata.d_SLS_num_of_req.keys())))
@@ -41,14 +41,16 @@ def Num_Req_to_Either(hybrid_req_logdata, ax):
             d_temp[i] = d_temp[i]+hybrid_req_logdata.d_VM_num_of_req[i]
         if i in hybrid_req_logdata.d_SLS_num_of_req:
             d_temp[i] = d_temp[i]+hybrid_req_logdata.d_SLS_num_of_req[i]
-    ax.set_title('number of requests (total)', fontdict={'fontsize': 8, 'fontweight': 'medium'})
-    ax.set_xlabel('epoch', fontdict={'fontsize': 4, 'fontweight': 'medium'})
-    ax.set_ylabel('# of requests', fontdict={'fontsize': 4, 'fontweight': 'medium'})
+    # ax.set_title('number of requests (total)')
+    ax.set_xlabel('time (s)')
+    ax.set_ylabel('# of requests')
     lists1 = sorted(d_temp.items())
     x, y = zip(*lists1)
-    ax.set_xticks(range(0, max(x) + 1, 100))
+    print(len(y))
+    # ax.set_xticks(range(0, max(x) + 1, 100))
     ax.axis(xmin=0, xmax=max(x))
     ax.plot(x, y)
+    # Num_Req_to_VM(hybrid_req_logdata, ax)
 
 
 def Num_VM_Provisioned(hybrid_req_logdata, ax):

@@ -202,9 +202,9 @@ def VM_healthy(MAXVM_req_logdata, ax):
         if MAXVM_req_logdata.d_total_count[i] != 0:
             min_healthy_index = i
             break
-    ax.plot(list(range(0, len(MAXVM_req_logdata.d_total_count[i-1:]))), MAXVM_req_logdata.d_total_count[i-1:])
-    ax.set_xticks(range(0, len(MAXVM_req_logdata.d_total_count[i-1:]) + 1, 100))
-    ax.axis(xmin=0, xmax=len(MAXVM_req_logdata.d_total_count[i-1:]))
+    ax.plot(list(range(0, len(MAXVM_req_logdata.d_total_count[min_healthy_index-1:]))), MAXVM_req_logdata.d_total_count[i-1:])
+    ax.set_xticks(range(0, len(MAXVM_req_logdata.d_total_count[min_healthy_index-1:]) + 1, 100))
+    ax.axis(xmin=0, xmax=len(MAXVM_req_logdata.d_total_count[min_healthy_index-1:]))
 
 
 
@@ -244,5 +244,5 @@ def plot_progress(MAXVM_req_logdata, MAXVM_vm_logdata, ax):
 
 
 if __name__ == "__main__":
-    setup_logging("41_20200518_VM_simple_2_240_40_-40_req_per_vm_3_to_1_to_9_pos_std_wait_for_server_new_alarm_1_pts_in_1_1_min_pts_scaling_per_300_sec_1800_total")
-    PollDurationDict("41_20200518_VM_simple_2_240_40_-40_req_per_vm_3_to_1_to_9_pos_std_wait_for_server_new_alarm_1_pts_in_1_1_min_pts_scaling_per_300_sec_1800_total")
+    setup_logging("53_20200519_VM_simple_2_240_-140_-180_req_per_vm_3_to_1_to_9_pos_std_wait_for_server_new_alarm_1_pts_in_1_1_min_pts_scaling_per_300_sec_1800_total")
+    PollDurationDict("53_20200519_VM_simple_2_240_-140_-180_req_per_vm_3_to_1_to_9_pos_std_wait_for_server_new_alarm_1_pts_in_1_1_min_pts_scaling_per_300_sec_1800_total")

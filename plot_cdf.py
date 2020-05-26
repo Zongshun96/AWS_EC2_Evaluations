@@ -79,22 +79,17 @@ def cdfplot(data_in):
     #adjust_plot()
 
 
-def plot_con(X, col, ax, Y=[], Z=[]):
+def plot_con(X, col, ax, marker):
     x, y = cdfplot(X)
 
     # fig = plt.figure()
-    ax.plot(x, y,color=col)
+    ax.plot(x, y, marker=marker, color=col, markersize=5, markevery=1000)
+    # ax.plot(x, y, marker=marker, color="black", markersize=5, markevery=1000)
     ax.axis([0, 2, 0,1])
-    ax.set_title('Response Times',fontdict={'fontsize': 8, 'fontweight': 'medium'})
-    ax.set_xlabel("turn-around time (s)")
+    # ax.set_title('Response Times',fontdict={'fontsize': 8, 'fontweight': 'medium'})
+    ax.set_xlabel("Turn around time (s)")
     ax.set_ylabel("CDF")
-
-    if Y!=[]:
-        x, y = cdfplot(Y)
-        ax.plot(x, y, color="g")
-    if Z!=[]:
-        x, y = cdfplot(Z)
-        ax.plot(x, y, color="b")
+    plt.tight_layout()
 
 
 

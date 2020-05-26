@@ -17,8 +17,14 @@ class logdata:
         # Instance Variable
         self.d_VM_num_of_req = {}  # epoch: # of req
         self.d_VM_num_of_fail = {}  # epoch: # of fail
+        # self.d_VM_num_of_error = {}  # epoch: # of fail
         self.d_SLS_num_of_req = {}
         self.d_SLS_num_of_fail = {}
+        # self.d_SLS_num_of_error = {}  # epoch: # of fail
+        self.d_either_num_of_fail = {}
+        self.d_either_num_of_error = {}
+        self.d_either_num_of_violation = {}
+        self.d_either_num_of_req = {}
         self.d_VM_predict_time = []
         self.d_VM_predict_time_d = {}
         self.d_VM_AVG_predict_time_d = {}
@@ -71,19 +77,40 @@ def readLog(logfile):
                     ret.d_VM_num_of_req[int(data[0])] = 1
                 else:
                     ret.d_VM_num_of_req[int(data[0])] = ret.d_VM_num_of_req[int(data[0])] + 1
+                if int(data[0]) not in ret.d_either_num_of_req:
+                    ret.d_either_num_of_req[int(data[0])] = 1
+                else:
+                    ret.d_either_num_of_req[int(data[0])] = ret.d_either_num_of_req[int(data[0])] + 1
                 if len(data) < 8:
+                    print(line)
                     ret.d_VM_TAtime.append(math.inf)
                     if(int(data[0]) not in ret.d_VM_num_of_fail):
                         ret.d_VM_num_of_fail[int(data[0])] = 1
                     else:
                         ret.d_VM_num_of_fail[int(data[0])] = ret.d_VM_num_of_fail[int(data[0])] + 1
+                    if (int(data[0]) not in ret.d_either_num_of_fail):
+                        ret.d_either_num_of_fail[int(data[0])] = 1
+                    else:
+                        ret.d_either_num_of_fail[int(data[0])] = ret.d_either_num_of_fail[int(data[0])] + 1
+                    if (int(data[0]) not in ret.d_either_num_of_error):
+                        ret.d_either_num_of_error[int(data[0])] = 1
+                    else:
+                        ret.d_either_num_of_error[int(data[0])] = ret.d_either_num_of_error[int(data[0])] + 1
                     ret.d_VM_predict_time.append(math.inf)
                     continue
-                if float(data[4]) > 1.2: # violate SLA
+                if float(data[4]) > 1: # violate SLA
                     if (int(data[0]) not in ret.d_VM_num_of_fail):
                         ret.d_VM_num_of_fail[int(data[0])] = 1
                     else:
                         ret.d_VM_num_of_fail[int(data[0])] = ret.d_VM_num_of_fail[int(data[0])] + 1
+                    if (int(data[0]) not in ret.d_either_num_of_fail):
+                        ret.d_either_num_of_fail[int(data[0])] = 1
+                    else:
+                        ret.d_either_num_of_fail[int(data[0])] = ret.d_either_num_of_fail[int(data[0])] + 1
+                    if (int(data[0]) not in ret.d_either_num_of_violation):
+                        ret.d_either_num_of_violation[int(data[0])] = 1
+                    else:
+                        ret.d_either_num_of_violation[int(data[0])] = ret.d_either_num_of_violation[int(data[0])] + 1
                 ret.d_VM_TAtime.append(float(data[4]))
                 ret.d_VM_TAtime_d.setdefault(int(data[0]), []).append(float(data[4]))
                 ret.d_VM_predict_time.append(float(data[3]))
@@ -94,19 +121,40 @@ def readLog(logfile):
                     ret.d_SLS_num_of_req[int(data[0])] = 1
                 else:
                     ret.d_SLS_num_of_req[int(data[0])] = ret.d_SLS_num_of_req[int(data[0])] + 1
+                if int(data[0]) not in ret.d_either_num_of_req:
+                    ret.d_either_num_of_req[int(data[0])] = 1
+                else:
+                    ret.d_either_num_of_req[int(data[0])] = ret.d_either_num_of_req[int(data[0])] + 1
                 if len(data) < 6: # error
+                    print(line)
                     ret.d_SLS_TAtime.append(math.inf)
                     if (int(data[0]) not in ret.d_SLS_num_of_fail):
                         ret.d_SLS_num_of_fail[int(data[0])] = 1
                     else:
                         ret.d_SLS_num_of_fail[int(data[0])] = ret.d_SLS_num_of_fail[int(data[0])] + 1
+                    if (int(data[0]) not in ret.d_either_num_of_fail):
+                        ret.d_either_num_of_fail[int(data[0])] = 1
+                    else:
+                        ret.d_either_num_of_fail[int(data[0])] = ret.d_either_num_of_fail[int(data[0])] + 1
+                    if (int(data[0]) not in ret.d_either_num_of_error):
+                        ret.d_either_num_of_error[int(data[0])] = 1
+                    else:
+                        ret.d_either_num_of_error[int(data[0])] = ret.d_either_num_of_error[int(data[0])] + 1
                     ret.d_SLS_predict_time.append(math.inf)
                     continue
-                if float(data[4]) > 1.2: # violate SLA
+                if float(data[4]) > 1: # violate SLA
                     if (int(data[0]) not in ret.d_SLS_num_of_fail):
                         ret.d_SLS_num_of_fail[int(data[0])] = 1
                     else:
                         ret.d_SLS_num_of_fail[int(data[0])] = ret.d_SLS_num_of_fail[int(data[0])] + 1
+                    if (int(data[0]) not in ret.d_either_num_of_fail):
+                        ret.d_either_num_of_fail[int(data[0])] = 1
+                    else:
+                        ret.d_either_num_of_fail[int(data[0])] = ret.d_either_num_of_fail[int(data[0])] + 1
+                    if (int(data[0]) not in ret.d_either_num_of_violation):
+                        ret.d_either_num_of_violation[int(data[0])] = 1
+                    else:
+                        ret.d_either_num_of_violation[int(data[0])] = ret.d_either_num_of_violation[int(data[0])] + 1
                 #     continue
                 ret.d_SLS_TAtime.append(float(data[4]))
                 ret.d_SLS_TAtime_d.setdefault(int(data[0]), []).append(float(data[4]))
