@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 def price(hybrid_req_logdata, hybrid_vm_logdata):
     SLS_price = sum(hybrid_req_logdata.d_SLS_predict_time)*0.0000166667*512/1024
     VM_price = sum(hybrid_vm_logdata.d_VM_duration) / 1000 / 3600 * 0.0416
+    # LIBRA_price = float(hybrid_vm_logdata.d_timestamp_of_decision[-1])-float(hybrid_vm_logdata.d_timestamp_of_decision[0]) / 1000 / 3600 * 0.0416
     return SLS_price, VM_price, SLS_price+VM_price
 
 
@@ -46,7 +47,7 @@ def Num_Req_to_Either(hybrid_req_logdata, ax):
     ax.set_ylabel('# of requests')
     lists1 = sorted(d_temp.items())
     x, y = zip(*lists1)
-    print(len(y))
+    # print(len(y))
     # ax.set_xticks(range(0, max(x) + 1, 100))
     ax.axis(xmin=0, xmax=max(x))
     ax.plot(x, y)

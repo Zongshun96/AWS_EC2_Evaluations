@@ -83,7 +83,8 @@ def plot_con(X, col, ax, marker):
     x, y = cdfplot(X)
 
     # fig = plt.figure()
-    ax.plot(x, y, marker=marker, color=col, markersize=5, markevery=1000)
+    ax.plot(x, y, marker=marker, color=col, markersize=10, markevery=1000)
+    # ax.scatter(x, y, marker=marker, color=col)
     # ax.plot(x, y, marker=marker, color="black", markersize=5, markevery=1000)
     ax.axis([0, 2, 0,1])
     # ax.set_title('Response Times',fontdict={'fontsize': 8, 'fontweight': 'medium'})

@@ -1,23 +1,23 @@
 from __future__ import division
 
-from tqdm import tqdm
+# from tqdm import tqdm
 import matplotlib as mtp
 mtp.rcParams.update({'font.size': 16})
+# import matplotlib.pyplot as plt
+# import numpy as np
+# import matplotlib.patches as mpatches
+# import json
+# from matplotlib import font_manager as fm
+# import math
+# import sys
+# import os
+# import json
 import matplotlib.pyplot as plt
-import numpy as np
-import matplotlib.patches as mpatches
-import json
-from matplotlib import font_manager as fm
-import math
-import sys
-import os
-import json 
-import matplotlib.pyplot as plt
-from time import gmtime, strftime
-import subprocess
-import json
-from scipy import mean
-import os
+# from time import gmtime, strftime
+# import subprocess
+# import json
+# from scipy import mean
+# import os
 
 
 
@@ -39,7 +39,7 @@ while True:
 	if not line: break
 	berkley_data.append(int(line))
 
-print len(wits_data), len(berkley_data)
+print(len(wits_data), len(berkley_data))
 
 
 

@@ -51,6 +51,8 @@ class logdata:
         self.d_unavailable_count = []
         self.d_total_count = []
 
+        self.d_timestamp_of_decision = []
+
 
 
 def readLog(logfile):
@@ -61,11 +63,10 @@ def readLog(logfile):
         # print(logfile)
         for line in f:
             if "!!" not in line:
-                l = line.split(" ")
-                # print(l)
-                # if l[4] == "epoch" and l[5] == "701\n":
-                #     print(line)
-                #     break
+                l = line.split(": ")
+                if len(l) < 2:
+                    continue
+                ret.d_timestamp_of_decision.append(l[1].split(" ")[3])
                 continue
             try:
                 l = line.split("!!")[1].split(": ")
@@ -81,7 +82,9 @@ def readLog(logfile):
                     ret.d_either_num_of_req[int(data[0])] = 1
                 else:
                     ret.d_either_num_of_req[int(data[0])] = ret.d_either_num_of_req[int(data[0])] + 1
+                # print("!?!?!?!?!?!?!?!?!!?")
                 if len(data) < 8:
+                    print("!!!!!!!!!!!!!!")
                     print(line)
                     ret.d_VM_TAtime.append(math.inf)
                     if(int(data[0]) not in ret.d_VM_num_of_fail):
@@ -90,8 +93,10 @@ def readLog(logfile):
                         ret.d_VM_num_of_fail[int(data[0])] = ret.d_VM_num_of_fail[int(data[0])] + 1
                     if (int(data[0]) not in ret.d_either_num_of_fail):
                         ret.d_either_num_of_fail[int(data[0])] = 1
+                        # print(line)
                     else:
                         ret.d_either_num_of_fail[int(data[0])] = ret.d_either_num_of_fail[int(data[0])] + 1
+                        # print(line)
                     if (int(data[0]) not in ret.d_either_num_of_error):
                         ret.d_either_num_of_error[int(data[0])] = 1
                     else:
@@ -105,8 +110,10 @@ def readLog(logfile):
                         ret.d_VM_num_of_fail[int(data[0])] = ret.d_VM_num_of_fail[int(data[0])] + 1
                     if (int(data[0]) not in ret.d_either_num_of_fail):
                         ret.d_either_num_of_fail[int(data[0])] = 1
+                        # print(line)
                     else:
                         ret.d_either_num_of_fail[int(data[0])] = ret.d_either_num_of_fail[int(data[0])] + 1
+                        # print(line)
                     if (int(data[0]) not in ret.d_either_num_of_violation):
                         ret.d_either_num_of_violation[int(data[0])] = 1
                     else:
@@ -126,6 +133,7 @@ def readLog(logfile):
                 else:
                     ret.d_either_num_of_req[int(data[0])] = ret.d_either_num_of_req[int(data[0])] + 1
                 if len(data) < 6: # error
+                    print("!!!!!!!!!!!!!!")
                     print(line)
                     ret.d_SLS_TAtime.append(math.inf)
                     if (int(data[0]) not in ret.d_SLS_num_of_fail):
@@ -134,8 +142,10 @@ def readLog(logfile):
                         ret.d_SLS_num_of_fail[int(data[0])] = ret.d_SLS_num_of_fail[int(data[0])] + 1
                     if (int(data[0]) not in ret.d_either_num_of_fail):
                         ret.d_either_num_of_fail[int(data[0])] = 1
+                        # print(line)
                     else:
                         ret.d_either_num_of_fail[int(data[0])] = ret.d_either_num_of_fail[int(data[0])] + 1
+                        # print(line)
                     if (int(data[0]) not in ret.d_either_num_of_error):
                         ret.d_either_num_of_error[int(data[0])] = 1
                     else:
@@ -149,8 +159,10 @@ def readLog(logfile):
                         ret.d_SLS_num_of_fail[int(data[0])] = ret.d_SLS_num_of_fail[int(data[0])] + 1
                     if (int(data[0]) not in ret.d_either_num_of_fail):
                         ret.d_either_num_of_fail[int(data[0])] = 1
+                        # print(line)
                     else:
                         ret.d_either_num_of_fail[int(data[0])] = ret.d_either_num_of_fail[int(data[0])] + 1
+                        # print(line)
                     if (int(data[0]) not in ret.d_either_num_of_violation):
                         ret.d_either_num_of_violation[int(data[0])] = 1
                     else:
