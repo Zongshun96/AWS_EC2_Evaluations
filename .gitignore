@@ -56,3 +56,4 @@ __pycache__/
 data/
 data copy/
 *.pyc
+venv/*
