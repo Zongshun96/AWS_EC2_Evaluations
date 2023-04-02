@@ -28,7 +28,8 @@ sla_violations = [0.0*100, 0.0*100, 0.00*100, 0.019423151694771015*100, 0.031150
 
 labels = ['LIBRA', 'FaaS', 'MAX', 'SPOCK', 'AUTO']
 priceBarplot = plot_bar.plot_price_and_SLA_violation(5, labels, cost, sla_violations, 'Normalized Cost', 'SLA Violations', 'Normalized Cost', '%', "++", "//", "b", "r")
-priceBarplot.savefig(figfolder+"/sla_cost_IC2E.eps", format='eps')
+priceBarplot.savefig(figfolder+"/sla_cost_IC2E.pdf", format='pdf')
+# priceBarplot.savefig(figfolder+"/sla_cost_IC2E.pdf")
 
 # ========================================================================================================================
 # ========================================================================================================================
@@ -36,7 +37,7 @@ priceBarplot.savefig(figfolder+"/sla_cost_IC2E.eps", format='eps')
 uptime = [547200/547200, 1053860/547200, 1053860/547200]
 labels = ['LIBRA', 'AUTO', 'SPOCK']
 durationBarplot = plot_bar.plot_a(3, labels, uptime, "//")
-durationBarplot.savefig(figfolder+"/vm_uptime_IC2E.eps", format='eps')
+durationBarplot.savefig(figfolder+"/vm_uptime_IC2E.pdf", format='pdf')
 
 # ========================================================================================================================
 # ========================================================================================================================
@@ -64,4 +65,4 @@ plot_bar.plot_a_stack(3, labels, [sum(x) for x in zip(alb_costs, vm_costs)], "Ia
 ax1.legend(prop={'size': 20}, loc="upper center", ncol = 2)
 ax1.grid(True)
 # plt.tight_layout()
-priceBarplot.savefig(figfolder+"/cost_break_down_norm_IC2E.eps", format='eps')
+priceBarplot.savefig(figfolder+"/cost_break_down_norm_IC2E.pdf", format='pdf')

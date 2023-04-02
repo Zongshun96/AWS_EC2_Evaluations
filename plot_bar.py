@@ -47,24 +47,48 @@ def plot_price_and_SLA_violation(length, labels, cost, sla_violations, left, rig
 	plt.xlabel(" ", fontsize=20)
 	plt.xticks(x + w / 2, labels, fontsize=15)
 	plt.ylabel(left_label, fontsize=20)
-	plt.ylim(0, 3)
+	plt.ylim(0, max(cost)+0.7)
 	cost_bar = ax1.bar(x, cost, width=w, facecolor="none", edgecolor=left_color, align='center', hatch=left_hatch)
 	ax1.tick_params(axis='both', which='major', labelsize=15)
 	# The trick is to use two different axes that share the same x axis, we have used ax1.twinx() method.
 	ax2 = ax1.twinx()
 	sla_vio_bar = ax2.bar(x + w, sla_violations, width=w, facecolor="none", edgecolor=right_color, align='center', hatch=right_hatch)
 	plt.ylabel(right_label, fontsize=20)
-	# plt.ylim(0, max(sla_violations)+10)
-	plt.ylim(0, 10)
-	plt.legend([cost_bar, sla_vio_bar], [left, right], prop={'size': 16}, loc="upper left", facecolor="none", edgecolor="none")
-	# legend.get_frame().set_alpha(None)
-	# legend.get_frame().set_facecolor((0, 0, 1, 0.1))
+	plt.ylim(0, max(sla_violations)+10)
+	plt.legend([cost_bar, sla_vio_bar], [left, right], prop={'size': 20}, loc="upper left", bbox_to_anchor=(0,1.03))
 	# plt.legend([cost_bar, sla_vio_bar], ['Normalized Cost', 'SLA Violations'])
 	ax2.tick_params(axis='both', which='major', labelsize=15)
 
 	plt.grid()
 	plt.tight_layout()
 	return fig
+
+# def plot_price_and_SLA_violation(length, labels, cost, sla_violations, left, right, left_label, right_label, left_hatch, right_hatch, left_color, right_color):
+# 	x = np.arange(length)
+# 	fig = plt.figure(figsize=(7,4.7))
+# 	ax1 = plt.subplot(1, 1, 1)
+# 	w = 0.3
+# 	plt.xlabel(" ", fontsize=20)
+# 	plt.xticks(x + w / 2, labels, fontsize=15)
+# 	plt.ylabel(left_label, fontsize=20)
+# 	plt.ylim(0, 3)
+# 	cost_bar = ax1.bar(x, cost, width=w, facecolor="none", edgecolor=left_color, align='center', hatch=left_hatch)
+# 	ax1.tick_params(axis='both', which='major', labelsize=15)
+# 	# The trick is to use two different axes that share the same x axis, we have used ax1.twinx() method.
+# 	ax2 = ax1.twinx()
+# 	sla_vio_bar = ax2.bar(x + w, sla_violations, width=w, facecolor="none", edgecolor=right_color, align='center', hatch=right_hatch)
+# 	plt.ylabel(right_label, fontsize=20)
+# 	plt.ylim(0, max(sla_violations)+10)
+# 	# plt.ylim(0, 10)
+# 	plt.legend([cost_bar, sla_vio_bar], [left, right], prop={'size': 16}, loc="upper left", facecolor="none", edgecolor="none")
+# 	# legend.get_frame().set_alpha(None)
+# 	# legend.get_frame().set_facecolor((0, 0, 1, 0.1))
+# 	# plt.legend([cost_bar, sla_vio_bar], ['Normalized Cost', 'SLA Violations'])
+# 	ax2.tick_params(axis='both', which='major', labelsize=15)
+
+# 	plt.grid()
+# 	plt.tight_layout()
+# 	return fig
 
 def plot_a_and_b_violation_side(length, labels, a, b, left, right, y_label, left_hatch, right_hatch, left_color, right_color):
 	x = np.arange(length)
