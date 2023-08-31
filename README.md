@@ -1,4 +1,4 @@
-In this repo we have the ploting methods for our LIBRA paper.
+In this repo we have the plotting methods for our LIBRA paper.
 The paper ([DOI](https://doi.ieeecomputersociety.org/10.1109/IC2E52221.2021.00028)) was published at IC2E2021(Best Paper Award). And the source code is [here](https://github.com/Zongshun96/LIBRA).
 
 Note: the data to generate plots in LIBRA paper is [here](https://drive.google.com/drive/folders/1ovbW6YLqee70_TPF0sdomK7BYdMJX9XT?usp=sharing).
