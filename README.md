@@ -4,7 +4,7 @@ The paper ([DOI](https://doi.ieeecomputersociety.org/10.1109/IC2E52221.2021.0002
 Note: the data to generate plots in LIBRA paper is [here](https://drive.google.com/drive/folders/1ovbW6YLqee70_TPF0sdomK7BYdMJX9XT?usp=sharing).
 
 
-Run:
+# Run
 1. Configure your [AWS crecidentials](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html#interactive-configuration)
 1. For each autoscaling group (potentially ran with different controller, i.e., LIBRA or SPOCK, or configurations), 
     1. Set the autoscaling group name at `__main__` in `VM_utils.py`
@@ -14,17 +14,17 @@ Run:
 1. Create and activate a python virtual environment (`python3 -m venv venv` and `source venv/bin/activate`) and install dependancies from `requirements.txt` (`python3 -m pip install -r requirements.txt`)
 1. Run `main_script.py` and the figures will be generated in a folder, `figs/`, in the current working directory
 
-`main_script.py`
+# File Structure
+`main_script.py`\
 The main script, it calls all other ploting and utility functions.
 
-Utility Functions (`Hybrid_utils.py`, `SLS_utils.py`, `VM_utils.py`)
+Utility Functions (`Hybrid_utils.py`, `SLS_utils.py`, `VM_utils.py`)\
 They are the entry point for cost plot and status plots.
 
-Ploting Functions (`plot_bar.py`, `plot_cdf.py`)
+Ploting Functions (`plot_bar.py`, `plot_cdf.py`)\
 Basically the original code from you. some small changed to the plt.figure.
 
-`requirements.txt`
-```
-Dependancies for the scripts
-```
+`requirements.txt`\
+The dependancies for the scripts
+
 
