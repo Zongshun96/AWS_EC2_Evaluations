@@ -244,5 +244,5 @@ def plot_progress(MAXVM_req_logdata, MAXVM_vm_logdata, ax):
 
 
 if __name__ == "__main__":
-    setup_logging("53_20200519_VM_simple_2_240_-140_-180_req_per_vm_3_to_1_to_9_pos_std_wait_for_server_new_alarm_1_pts_in_1_1_min_pts_scaling_per_300_sec_1800_total")
-    PollDurationDict("53_20200519_VM_simple_2_240_-140_-180_req_per_vm_3_to_1_to_9_pos_std_wait_for_server_new_alarm_1_pts_in_1_1_min_pts_scaling_per_300_sec_1800_total")
+    setup_logging("101_20230825_hybrid_4_req_per_vm_pos_std_1800_total")
+    PollDurationDict("101_20230825_hybrid_4_req_per_vm_pos_std_1800_total")

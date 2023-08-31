@@ -54,7 +54,5 @@
 serverless_vm_cloud_update_150_0.8.log_request
 __pycache__/
 data/
-data copy/
-*.pyc
-venv/*
+# venv/
 venv/
